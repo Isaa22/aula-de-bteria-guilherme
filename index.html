@@ -1,138 +1,94 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Academia de Bateria</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Battery Academy | Aulas Profissionais de Bateria</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="container">
+    <!-- Cabeçalho moderno -->
+    <header class="main-header">
+      <div class="logo">
+        <h1>🥁 BATTERY ACADEMY</h1>
+        <span>Método profissional · Aulas imersivas</span>
+      </div>
+      <div class="user-welcome" id="userWelcomeDisplay">
+        <i class="fas fa-user-graduate"></i> <span id="studentNameSpan">Aluno</span>
+      </div>
+    </header>
 
-<header>
+    <!-- Seção de cadastro / matrícula -->
+    <div class="cadastro-section card-modern" id="cadastroSection">
+      <div style="padding: 1.8rem;">
+        <h2 style="margin-bottom: 0.5rem;"><i class="fas fa-drum"></i> Matrícula do Aluno</h2>
+        <p style="margin-bottom: 1.5rem; color: #b9c7d9;">Preencha os dados para iniciar a jornada na bateria</p>
+        <div class="form-grid">
+          <div class="input-group">
+            <label><i class="fas fa-user"></i> Nome completo</label>
+            <input type="text" id="studentName" placeholder="Ex: João Silva" autocomplete="off">
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-chart-line"></i> Nível</label>
+            <select id="studentLevel">
+              <option value="iniciante">🥁 Iniciante (nunca tocou)</option>
+              <option value="intermediario">🎵 Já toca há menos de 1 ano</option>
+              <option value="avancado">🔥 Toca há mais de 1 ano</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-clock"></i> Há quanto tempo toca?</label>
+            <input type="text" id="experienceTime" placeholder="ex: 6 meses, 2 anos..." autocomplete="off">
+          </div>
+          <div class="input-group">
+            <button id="btnRegisterStudent"><i class="fas fa-check-circle"></i> Iniciar Curso</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="logo">
-🥁 Academia de Bateria
-</div>
+    <!-- Área principal do curso (só aparece após cadastro) -->
+    <div id="courseArea" style="display: none;">
+      <div class="aulas-header">
+        <div>
+          <h2><i class="fas fa-book-open"></i> Módulos & Aulas</h2>
+          <p>Progresso prático e teórico — complete cada aula para desbloquear a próxima</p>
+        </div>
+        <div class="level-badge" id="studentLevelBadge">Nível: Iniciante</div>
+      </div>
 
-<nav>
-<a href="#inicio">Início</a>
-<a href="#modulos">Módulos</a>
-<a href="#cadastro">Cadastro</a>
-</nav>
+      <!-- grade de aulas (20 cards) -->
+      <div id="aulasGrid" class="aula-grid"></div>
 
-</header>
+      <!-- Botão de reiniciar ou resetar progresso -->
+      <div style="margin-top: 30px; text-align: center;">
+        <button id="resetProgressBtn" class="btn-sec"><i class="fas fa-sync-alt"></i> Resetar Progresso</button>
+      </div>
+    </div>
+  </div>
 
-<section id="inicio" class="hero">
+  <!-- Modal para exibir aula detalhada (conteúdo + imagens reais da bateria) -->
+  <div id="aulaModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Aula 1: Conhecendo a Bateria</h2>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div id="modalBody" style="line-height: 1.5;">
+        <!-- conteúdo dinâmico -->
+      </div>
+      <div style="display: flex; justify-content: flex-end; margin-top: 30px; gap: 15px;">
+        <button id="completeLessonBtn" class="btn-sec"><i class="fas fa-check-double"></i> Concluir esta aula</button>
+        <button id="closeModalBtn" class="btn-sec">Fechar</button>
+      </div>
+    </div>
+  </div>
 
-<div class="hero-content">
-
-<h1>Aprenda Bateria do Zero ao Avançado</h1>
-
-<p>
-Curso completo com Rock, Sertanejo,
-Vaneira, Xote, Gospel e muito mais.
-</p>
-
-<button onclick="abrirCadastro()">
-Começar Agora
-</button>
-
-</div>
-
-</section>
-
-<section id="modulos">
-
-<h2>Trilha de Aprendizagem</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Módulo 1</h3>
-<p>Conhecendo a bateria</p>
-</div>
-
-<div class="card">
-<h3>Módulo 2</h3>
-<p>Fundamentos</p>
-</div>
-
-<div class="card">
-<h3>Módulo 3</h3>
-<p>Rock e Pop</p>
-</div>
-
-<div class="card">
-<h3>Módulo 4</h3>
-<p>Ritmos Gaúchos</p>
-</div>
-
-<div class="card">
-<h3>Módulo 5</h3>
-<p>Gospel</p>
-</div>
-
-<div class="card">
-<h3>Módulo 6</h3>
-<p>Avançado</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="cadastro">
-
-<h2>Cadastro do Aluno</h2>
-
-<form id="formAluno">
-
-<input
-type="text"
-placeholder="Nome Completo"
-required
->
-
-<input
-type="number"
-placeholder="Idade"
-required
->
-
-<select>
-
-<option>
-Nunca toquei bateria
-</option>
-
-<option>
-Menos de 1 ano
-</option>
-
-<option>
-Mais de 1 ano
-</option>
-
-<option>
-Avançado
-</option>
-
-</select>
-
-<button>
-Entrar
-</button>
-
-</form>
-
-</section>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
