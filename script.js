@@ -255,4 +255,112 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => modal.style.display = 'none');
   });
   document.getElementById('completeLessonBtn')?.addEventListener('click', concluirAulaAtual);
-  window.onclick =
+  window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+});
+
+function carregarEstadoSalvo() {
+  const saved = localStorage.getItem('batteryAcademyStudent');
+  if (saved) {
+    alunoLogado = JSON.parse(saved);
+    atualizarInterfacePosCadastro();
+    renderizarAulas();
+    document.getElementById('cadastroSection').style.display = 'none';
+    document.getElementById('courseArea').style.display = 'block';
+  } else {
+    document.getElementById('cadastroSection').style.display = 'block';
+    document.getElementById('courseArea').style.display = 'none';
+  }
+}
+
+function registrarAluno() {
+  const nome = document.getElementById('studentName').value.trim();
+  const nivel = document.getElementById('studentLevel').value;
+  const experiencia = document.getElementById('experienceTime').value.trim() || "não informado";
+  if (!nome) {
+    alert("Por favor, insira o nome do aluno.");
+    return;
+  }
+  const progressoInicial = [true, ...Array(19).fill(false)];
+  alunoLogado = { nome, nivel, experiencia, progresso: progressoInicial };
+  salvarAluno();
+  document.getElementById('cadastroSection').style.display = 'none';
+  document.getElementById('courseArea').style.display = 'block';
+  atualizarInterfacePosCadastro();
+  renderizarAulas();
+}
+
+function salvarAluno() {
+  localStorage.setItem('batteryAcademyStudent', JSON.stringify(alunoLogado));
+}
+
+function atualizarInterfacePosCadastro() {
+  document.getElementById('studentNameSpan').innerText = alunoLogado.nome.split(' ')[0];
+  let nivelTexto = alunoLogado.nivel === 'iniciante' ? '🥁 Iniciante' : (alunoLogado.nivel === 'intermediario' ? '🎵 Intermediário' : '🔥 Avançado');
+  document.getElementById('studentLevelBadge').innerHTML = `🎓 ${alunoLogado.nome} · ${nivelTexto} | ${alunoLogado.experiencia}`;
+}
+
+function renderizarAulas() {
+  const grid = document.getElementById('aulasGrid');
+  grid.innerHTML = '';
+  for (let i = 0; i < aulasData.length; i++) {
+    const aula = aulasData[i];
+    const isCompleted = alunoLogado.progresso[i] === true;
+    const isLocked = (i > 0 && !alunoLogado.progresso[i-1]);
+    const card = document.createElement('div');
+    card.className = `aula-card ${isLocked && !isCompleted ? 'locked' : ''}`;
+    card.innerHTML = `
+      <div class="aula-img" style="background: linear-gradient(135deg, #1f2b38, #0e1620);">
+        <span class="aula-num"><i class="fas fa-drum"></i> Aula ${i+1}</span>
+      </div>
+      <div class="aula-info">
+        <div class="aula-title">${aula.titulo}</div>
+        <div class="aula-desc">${aula.descricao}</div>
+        <div class="completion-status">
+          <span class="check-complete">${isCompleted ? '<i class="fas fa-check-circle" style="color:#F5B042"></i> Concluída' : '<i class="far fa-circle"></i> Não concluída'}</span>
+          <i class="fas fa-chevron-right" style="color:#E25822"></i>
+        </div>
+      </div>
+    `;
+    if (!isLocked || isCompleted) {
+      card.addEventListener('click', () => abrirModalAula(i));
+    }
+    grid.appendChild(card);
+  }
+}
+
+function abrirModalAula(aulaId) {
+  if (!alunoLogado) return;
+  if (aulaId > 0 && !alunoLogado.progresso[aulaId-1]) {
+    alert("Complete a aula anterior primeiro!");
+    return;
+  }
+  currentModalAulaId = aulaId;
+  const aula = aulasData[aulaId];
+  document.getElementById('modalTitle').innerHTML = `Aula ${aulaId+1}: ${aula.titulo}`;
+  document.getElementById('modalBody').innerHTML = aula.conteudo;
+  document.getElementById('aulaModal').style.display = 'flex';
+}
+
+function concluirAulaAtual() {
+  if (currentModalAulaId === null || !alunoLogado) return;
+  if (alunoLogado.progresso[currentModalAulaId]) {
+    alert("Essa aula já foi concluída!");
+    document.getElementById('aulaModal').style.display = 'none';
+    return;
+  }
+  alunoLogado.progresso[currentModalAulaId] = true;
+  salvarAluno();
+  renderizarAulas();
+  document.getElementById('aulaModal').style.display = 'none';
+  alert(`🎉 Parabéns! Aula ${currentModalAulaId+1} concluída. Continue evoluindo!`);
+  currentModalAulaId = null;
+}
+
+function resetarProgresso() {
+  if (confirm("Tem certeza que deseja resetar todo o progresso do aluno?")) {
+    alunoLogado.progresso = [true, ...Array(19).fill(false)];
+    salvarAluno();
+    renderizarAulas();
+    alert("Progresso reiniciado! Aula 1 liberada.");
+  }
+}
