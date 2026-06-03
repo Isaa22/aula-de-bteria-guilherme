@@ -18,7 +18,6 @@ body {
   padding: 2rem 2rem 4rem;
 }
 
-/* Header moderno */
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -61,7 +60,6 @@ body {
   border-left: 3px solid #E25822;
 }
 
-/* Cards modernos */
 .card-modern {
   background: rgba(20, 26, 36, 0.8);
   backdrop-filter: blur(8px);
@@ -70,7 +68,6 @@ body {
   box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
 }
 
-/* Formulário */
 .cadastro-section {
   margin-bottom: 50px;
 }
@@ -139,11 +136,11 @@ button:hover {
   background: #2a3748;
   box-shadow: none;
 }
+
 .btn-sec:hover {
   background: #3e4e64;
 }
 
-/* Aulas grid */
 .aulas-header {
   display: flex;
   justify-content: space-between;
@@ -181,6 +178,7 @@ button:hover {
   filter: grayscale(0.1);
   cursor: not-allowed;
 }
+
 .aula-card.locked:hover {
   transform: none;
 }
@@ -221,17 +219,20 @@ button:hover {
   margin-bottom: 6px;
   font-family: 'Poppins', sans-serif;
 }
+
 .aula-desc {
   color: #adb7c4;
   font-size: 0.85rem;
   margin-bottom: 15px;
 }
+
 .completion-status {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 12px;
 }
+
 .check-complete {
   background: #1e2a36;
   border-radius: 30px;
@@ -239,25 +240,28 @@ button:hover {
   font-size: 0.7rem;
   font-weight: 600;
 }
+
 .check-complete i {
   margin-right: 5px;
 }
 
-/* Modal profissional */
 .modal {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0,0,0,0.85);
   backdrop-filter: blur(10px);
   z-index: 1000;
   justify-content: center;
   align-items: center;
 }
+
 .modal-content {
   background: #11171f;
-  max-width: 800px;
+  max-width: 900px;
   width: 90%;
   max-height: 85vh;
   overflow-y: auto;
@@ -266,9 +270,11 @@ button:hover {
   border: 1px solid #E25822;
   box-shadow: 0 30px 50px rgba(0,0,0,0.7);
 }
+
 .modal-content::-webkit-scrollbar {
   width: 6px;
 }
+
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -277,20 +283,25 @@ button:hover {
   border-bottom: 1px solid #2c3e44;
   padding-bottom: 10px;
 }
+
 .close-modal {
   font-size: 28px;
   cursor: pointer;
   transition: 0.1s;
 }
+
 .close-modal:hover {
   color: #E25822;
 }
+
+/* Estilos para o conteúdo das aulas */
 .partes-bateria {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin: 25px 0;
 }
+
 .parte-item {
   display: flex;
   gap: 15px;
@@ -300,9 +311,10 @@ button:hover {
   align-items: center;
   flex-wrap: wrap;
 }
+
 .parte-img-place {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   background: #1e2a36;
   border-radius: 20px;
   display: flex;
@@ -311,14 +323,40 @@ button:hover {
   font-size: 2.5rem;
   color: #F5B042;
 }
+
 .descricao-parte {
   flex: 1;
 }
+
 .descricao-parte strong {
   font-size: 1.2rem;
   color: #F5B042;
 }
+
+.foto-bateria {
+  width: 100%;
+  border-radius: 24px;
+  margin: 20px 0;
+  border: 1px solid #E25822;
+}
+
+.dica-box {
+  background: linear-gradient(135deg, #1e2a3a, #0f1a24);
+  border-left: 4px solid #E25822;
+  padding: 16px;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
 hr {
   border-color: #2c3e44;
+  margin: 20px 0;
+}
+
+.exercicio-box {
+  background: #0a0f16;
+  padding: 16px;
+  border-radius: 20px;
   margin: 15px 0;
+  border: 1px solid #E25822;
 }
