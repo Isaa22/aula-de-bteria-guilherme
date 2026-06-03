@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academia de Bateria</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        🥁 Academia de Bateria
+    </div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#cadastro">Cadastro</a>
+        <a href="#aulas">Aulas</a>
+    </nav>
+</header>
+
+<section class="hero" id="inicio">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        <h1>Aprenda Bateria do Zero</h1>
+
+        <p>
+            Curso completo para iniciantes e alunos avançados.
+        </p>
+
+        <button onclick="mostrarCadastro()">
+            Fazer Cadastro
+        </button>
+    </div>
+
+</section>
+
+<section id="cadastro" class="cadastro">
+
+    <h2>Cadastro do Aluno</h2>
+
+    <form id="formAluno">
+
+        <input type="text" id="nome" placeholder="Nome Completo" required>
+
+        <input type="number" id="idade" placeholder="Idade" required>
+
+        <select id="nivel">
+            <option value="iniciante">Nunca toquei bateria</option>
+            <option value="basico">Toco há menos de 1 ano</option>
+            <option value="intermediario">Toco há mais de 1 ano</option>
+        </select>
+
+        <button type="submit">
+            Entrar no Curso
+        </button>
+
+    </form>
+
+</section>
+
+<section id="painel" class="painel oculto">
+
+    <h2 id="boasVindas"></h2>
+
+    <div class="progresso">
+        <div id="barra"></div>
+    </div>
+
+    <p id="textoProgresso">
+        10%
+    </p>
+
+</section>
+
+<section id="aulas" class="aulas">
+
+    <h2>Conteúdo do Curso</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Aula 1</h3>
+            <p>Conhecendo a Bateria</p>
+            <button onclick="abrirAula(1)">
+                Abrir Aula
+            </button>
+        </div>
+
+        <div class="card bloqueado">
+            <h3>Aula 2</h3>
+            <p>Segurando as Baquetas</p>
+        </div>
+
+        <div class="card bloqueado">
+            <h3>Aula 3</h3>
+            <p>Primeiras Batidas</p>
+        </div>
+
+    </div>
+
+</section>
+
+<div id="modal" class="modal">
+
+    <div class="conteudo-modal">
+
+        <span onclick="fecharModal()" class="fechar">
+            ×
+        </span>
+
+        <div id="conteudoAula"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
