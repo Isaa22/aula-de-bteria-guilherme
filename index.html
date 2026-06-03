@@ -23,7 +23,7 @@
       </div>
     </header>
 
-    <!-- Seção de cadastro / matrícula -->
+    <!-- Seção de cadastro -->
     <div class="cadastro-section card-modern" id="cadastroSection">
       <div style="padding: 1.8rem;">
         <h2 style="margin-bottom: 0.5rem;"><i class="fas fa-drum"></i> Matrícula do Aluno</h2>
@@ -52,36 +52,30 @@
       </div>
     </div>
 
-    <!-- Área principal do curso (só aparece após cadastro) -->
+    <!-- Área principal do curso -->
     <div id="courseArea" style="display: none;">
       <div class="aulas-header">
         <div>
           <h2><i class="fas fa-book-open"></i> Módulos & Aulas</h2>
-          <p>Progresso prático e teórico — complete cada aula para desbloquear a próxima</p>
+          <p>Complete cada aula para desbloquear a próxima</p>
         </div>
         <div class="level-badge" id="studentLevelBadge">Nível: Iniciante</div>
       </div>
-
-      <!-- grade de aulas (20 cards) -->
       <div id="aulasGrid" class="aula-grid"></div>
-
-      <!-- Botão de reiniciar ou resetar progresso -->
       <div style="margin-top: 30px; text-align: center;">
         <button id="resetProgressBtn" class="btn-sec"><i class="fas fa-sync-alt"></i> Resetar Progresso</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal para exibir aula detalhada (conteúdo + imagens reais da bateria) -->
+  <!-- Modal da aula -->
   <div id="aulaModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="modalTitle">Aula 1: Conhecendo a Bateria</h2>
         <span class="close-modal">&times;</span>
       </div>
-      <div id="modalBody" style="line-height: 1.5;">
-        <!-- conteúdo dinâmico -->
-      </div>
+      <div id="modalBody"></div>
       <div style="display: flex; justify-content: flex-end; margin-top: 30px; gap: 15px;">
         <button id="completeLessonBtn" class="btn-sec"><i class="fas fa-check-double"></i> Concluir esta aula</button>
         <button id="closeModalBtn" class="btn-sec">Fechar</button>
